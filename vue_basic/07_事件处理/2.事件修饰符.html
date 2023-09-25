@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件修饰符</title>
+
+  <style>
+    * {
+      margin-top: 20px;
+    }
+
+    .demo {
+      background-color: skyblue;
+      height: 50px;
+    }
+
+    .box1{
+      background-color: skyblue;
+      height: 50px;
+    }
+
+    .box2{
+      background-color: orange;
+      height: 50px;
+      margin-bottom: 20px;
+    }
+
+
+    ul{
+      width: 200px;
+      height: 200px;
+      background-color: peru;
+      overflow: auto; /* 形成滚动条 */
+    }
+    li{
+      height: 200px;
+    }
+  </style>
+  <script src="/js/vue.js"></script>
+</head>
+
+<body>
+  <!-- 
+    Vue中的事件修饰符：
+    1.prevent:阻止默认事件(常用)：
+    2.stop:阻止事件冒泡(常用)：
+    3.once:事件只触发一次(常用)：
+    4.capture:使用事件的捕获模式：
+    5.self:只有在event.target是当前操作的元素时才会触发事件
+    6.passive:事件的默认行为为立即执行，无需等待事件回调执行完毕：
+   -->
+
+  <div id="root">
+    <h2>欢迎来到{{name}}学习</h2>
+    <!-- 阻止默认事件(常用) -->
+    <a href="http://www.baidu.com" v-on:click.prevent='showInfo'>点击跳转到百度</a>
+
+    <!-- 阻止事件冒泡(常用) -->
+    <div class="demo" @click="showInfo">
+      <button @click.stop="showInfo">点击我有弹窗</button>
+
+      <!-- 修饰符可以连续写 -->
+      <a href="http://www.baidu.com" v-on:click.prevent.stop='showInfo'>点击跳转到百度</a>
+    </div>
+
+    <!-- 事件只触发一次(常用) -->
+    <button @click.once="showInfo">点击我有弹窗once</button>
+
+    <!-- 使用事件的捕获模式 -->
+    <div class="box1" @click.capture="showMsg(1)">
+      div1
+      <div class="box2" @click="showMsg(2)">
+        div2
+      </div>
+    </div>
+
+    <!-- 只有在event.target是当前操作的元素时才会触发事件 -->
+    <div class="demo" @click.self="showInfo">
+      <button @click="showInfo">点击我有弹窗</button>
+    </div>
+
+
+    <!-- 事件的默认行为为立即执行，无需等待事件回调执行完毕 -->
+
+    <ul @wheel.passive="demo"> <!-- scroll事件滚动条发生滚动时会触发事件 
+    wheel 鼠标滚轮发生滚动时就会触发事件-->
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+
+  </div>
+
+  <script>
+
+    new Vue({
+      el: '#root',
+      data: {
+        name: 'agu'
+      },
+      methods: {
+        showInfo(e) {
+          
+          // console.log(e.target);
+          alert('hello');
+          // e.stopPropagation();//阻止事件冒泡
+          // e.preventDefault();//阻止标签默认行为
+        },
+        showMsg(msg){
+          alert(msg);
+        },
+        demo(){
+          // console.log('@');
+          for(let i =0;i<100000;i++){
+            console.log('#');
+          }
+        }
+      }
+    })
+
+    
+    
+
+
+
+
+
+    /*e.stopPropagation()阻止事件冒泡
+    e.preventDefault()阻止标签默认行为
+
+
+    js里面的事件流是分为捕获阶段和冒泡阶段
+    冒泡时间才会处理事件，捕获阶段是由外到内，冒泡阶段是由内到外
+    
+
+      
+    */
+   
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVVM模型</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+      1.M:模型(model):对应data中的数据
+      2.V:视图(view):模板
+      3.VM:视图模型(ViewModel):Vue实例对象
+     -->
+  <div class="root">
+    <!-- View -->
+    <h3>hello,{{name}}</h3>
+  </div>
+  <script>
+    const vm = new Vue({ //ViewModel
+      // 下面是Model
+      el: '.root',
+      data: {
+        name: 'sgu'
+
+      }
+    })
+
+    console.log(vm);
+  </script>
+
+
+
+</body>
+
+</html>
