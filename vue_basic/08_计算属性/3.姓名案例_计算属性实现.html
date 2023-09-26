@@ -52,7 +52,8 @@
         x:'xl'
       },
       computed:{//里面设置了cache
-        fullName:{//vm里面的fullName时，Vue自动找到get(),自动调用get(),拿到get中的返回值放到fullName中。
+        // 完整写法
+       /*  fullName:{//vm里面的fullName时，Vue自动找到get(),自动调用get(),拿到get中的返回值放到fullName中。
           //get,当有人读取fullName时,get就会被调用，且返回值就作为fullName的值
           //get什么时候被调用？1.初次读取fullName时。2.所依赖的数据发生改变时
           get(){
@@ -69,9 +70,19 @@
 
            /*  const arr =value.split('-');
             this.firstName = arr[0];
-            this.lastName = arr[1]; */
+            this.lastName = arr[1]; 
+
+          
+            
+            
+          
 
           } 
+        }*/
+        //简写(只读不写)
+        fullName(){
+          console.log('get被调用了');
+          return this.firstName + '-' +this.lastName;
         }
       }
      })
