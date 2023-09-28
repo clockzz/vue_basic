@@ -21,8 +21,7 @@
 
   </div>
   
-  <script>
-    //用computed实现
+  <script>   
     const vm =  new Vue({
           el:'#root',
           data:{  
@@ -41,8 +40,10 @@
               this.persons[0].age = 50;
               this.persons[0].sex = '男' */
 
-              //数据确实被改变，但是Vue没有监视到  
-              this.persons[0] ={id:'001',name:'马老师',age:50,sex:'男'}
+              //不奏效 数据确实被改变，但是Vue没有监视到 
+              // this.persons[0] ={id:'001',name:'马老师',age:50,sex:'男'}
+
+              this.persons.splice(0,1,{id:'001',name:'马老师',age:50,sex:'男'})
             }
           },
          })

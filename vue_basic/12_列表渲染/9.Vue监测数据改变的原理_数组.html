@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue监测数据改变的原理_数组</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+
+  <!-- 准备好一个容器 --> 
+  <div id="root">
+    <h2>学校名称: {{school.name}} </h2>
+    <h2>学校地址: {{school.address}} </h2>
+    <h2>校长是：{{school.principal}}</h2>
+    <hr>
+    <h1>学生信息</h1>
+    <button @click="addSex">添加一个性别属性,默认值是男</button>
+    <h2>姓名：{{student.name}}</h2>
+    <h2 v-if="student.sex">性别：{{student.sex}}</h2>
+    <h2>年龄：真实{{student.age.rAge}},对外{{student.age.sAge}}</h2>
+    <h2>朋友们</h2>
+    <ul>
+      <li v-for="(f,index) in student.friends" :key="index">
+        {{f.name}}--{{f.age}}
+      </li>
+    </ul>
+    <hr>
+
+    <h2>爱好</h2>
+    <ul>
+      <li v-for="(h,index) in student.hobby" :key="index">
+        {{h}}
+      </li>
+    </ul>
+    <hr>
+    
+  </div>
+  
+  <script>
+
+    // Vue.set()只能给Vue上某个对象身上添加属性，不能给Vue身上添加属性
+    //vm.$set(vm._data.student,'sex','女')
+    //Vue.set(vm._data.student,'sex','男')
+    //vm._data.student = vm.student(数据代理)
+    
+
+    //往数组后面新增一个元素push();往数组后面删除一个元素pop();
+    //往数组前面新增一个原始unshift();往数组前面删除一个元素shift();
+    //在数组的指定位置新增、删除、替换一个元素splice();
+    //对数组进行排序sort();
+    //反转一个数组reverse();  
+    
+    const vm = new Vue({
+          el:'#root',
+          data:{  
+            school:{
+              name:'sgu',
+              address:'beijing',
+              principal:'lmh'
+            },
+            student:{
+              name:'tom',
+              //sex:'男', // return undefined 对于Vue,如果返回值时undefined则不展示
+              age:{
+                rAge:40,
+                sAge:29  
+              },
+              hobby:['running','play the guitar','swimming'],
+              friends:[
+                {name:'jerry',age:35},
+                {name:'tony',age:36}
+              ]
+            }
+          },
+          methods: {
+            addSex(){
+              // Vue.set(vm.student,'sex','男')
+              this.$set(vm.student,'sex','男')
+            }
+          },
+         })
+         
+  </script>
+</body>
+</html>
