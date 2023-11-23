@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+
+  <!-- 准备好一个容器 -->
+  <div id="root">
+    <p v-text="n"></p>
+    <h2>当前n的值是：{{n}}</h2>
+    <button @click="add">click me n plus 1</button>
+    <hr>
+    <h2>当前n的值是：{{n}}</h2>
+    <button @click="bye">Click me to destroy vm</button>
+  </div>
+  
+</body>
+  <script>
+
+      new Vue({
+          el:'#root',
+          /* template:`
+            <div>
+              <h2>当前n的值是：{{n}}</h2>
+              <button @click="add">点我n+1</button>
+            </div>`, */
+          data:{  
+            name:'hello sgu',
+            n:1,
+    
+          },
+          methods: {
+            add(){
+              console.log('add');
+              this.n ++ 
+            },
+            bye(){
+              console.log('bye');
+              this.$destroy();//完全销毁一个实例。清理它与其他的所有连接，解绑它的全部指令及事件监听器。
+              
+            }
+          },
+          watch:{
+            n(){
+              console.log('n变了');
+            }
+          },
+          beforeCreate() {
+            console.log('beforeCreate');
+          },
+          created() {
+            console.log('created');
+          },
+          beforeMount() {
+            console.log('beforeMount');
+            //console.log(this);
+            //document.querySelector('h2').innerHTML = 'hello world';
+            
+          },
+          mounted() {
+            console.log('mounted',this.$el instanceof HTMLElement);
+            //console.log(this.$el);
+            //document.querySelector('h2').innerHTML = 'hello world';
+            //debugger;
+          },
+           beforeUpdate() {
+            console.log('beforeUpdate');
+           
+          },
+          updated() {
+            console.log('updated');
+            console.log(this.n);
+            // debugger;
+            // this.n = 99
+          }, 
+          beforeDestroy() {
+            console.log('beforeDestroy');
+            //console.log(this.n);
+            this.add();
+          },
+          destroyed() {
+            console.log('destroyed');
+          }
+         })
+         
+  </script>
+</html>
