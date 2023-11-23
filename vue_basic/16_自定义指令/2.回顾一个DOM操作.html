@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>回顾一个DOM操作</title>
+  <style>
+    .demo{
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+  <button id="btn">点我创建一个输入框</button>
+  
+  <script>
+    const btn = document.getElementById('btn')
+    btn.onclick = function(){
+      // 创建一个输入框
+      const input = document.createElement('input')
+      // 设置输入框的值
+      input.value = '我是通过js创建的输入框'
+      // 设置输入框的类型
+      input.type = 'text'
+      
+      input.onclick =()=>{
+        alert(1)
+      }
+      // 设置输入框的样式
+      input.className = 'demo'
+      // 设置输入框的id
+      input.id = 'input'
+      // 把输入框插入到body中
+      document.body.appendChild(input)
+      input.focus()
+      input.parentElement.style.backgroundColor = 'skyblue'
+    }
+
+    // 获取输入框
+    const input = document.getElementById('input')
+  </script>
+</body>
+</html>
