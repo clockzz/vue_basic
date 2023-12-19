@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+  <!-- 准备好一个容器 -->
+  <div id="root">
+    <school></school>
+    <hello></hello>
+  </div>
+
+</body>
+<script>
+  //定义school组件
+  const school = Vue.extend({
+    name: 'school',
+    template: `
+        <div>
+          <h2>学校名称：{{name}}</h2>
+          <h2>学校地址：{{address}}</h2>
+          <button @click=ShowName>点我出现弹窗</button>
+        </div>
+      `,
+    data() {
+      return {
+        name: 'atguigu',
+        address: 'beijing'
+      }
+    },
+    methods: {
+      ShowName() {
+        alert(this.name);
+        // console.log(this);
+      }
+    },
+  })
+
+  //定义test组件
+  const test = Vue.extend({
+    template:`<span>atguigu</span>`
+  })
+
+  //定义hello组件
+  const hello = Vue.extend({
+    name: 'hello',
+    template: `
+    <div>
+      <h2>{{msg}}</h2>
+      <test></test>
+    </div>
+    `,
+    data() {
+      return {
+        msg: 'hello'
+      }
+
+    },
+    components: {
+      test
+    }
+  })
+
+  /* school.a=99;
+  console.log('@', school );
+  console.log('#', hello); */
+
+  //创建vm
+  const vm =new Vue({
+    el: '#root',
+    data: {
+      msg: 'hello'
+    },
+    // 
+    components: {
+      school,
+      hello
+    }
+  })
+
+  console.log(vm);
+
+
+</script>
+
+</html>

@@ -5823,6 +5823,7 @@
        * Class inheritance
        */
       Vue.extend = function (extendOptions) {
+        //debugger;
           extendOptions = extendOptions || {};
           var Super = this;
           var SuperId = Super.cid;
@@ -5835,6 +5836,7 @@
               validateComponentName(name);
           }
           var Sub = function VueComponent(options) {
+                
               this._init(options);
           };
           Sub.prototype = Object.create(Super.prototype);

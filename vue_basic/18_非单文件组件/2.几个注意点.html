@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+
+  <!-- 准备好一个容器 -->
+  <div id="root">
+      <h1>{{name}}</h1>
+      <hr>
+      <school></school>
+      <school/>
+  </div>
+  
+</body>
+  <script>
+
+      //定义组件
+      const school = Vue.extend({
+        name:'HELLO',
+        template:`
+        <div>
+          <h2>{{name}}</h2>
+          <h2>{{address}}</h2>
+        </div>`
+        ,
+        data(){
+          return {
+            name:'sguComponent',
+            address:"beijingComponent"
+          }
+        }
+      })
+
+      new Vue({
+          el:'#root',
+          data:{  
+            name:'sgu'
+    
+          },
+          // 注册组件
+          components:{
+            school
+          }
+         })
+         
+  </script>
+</html>
