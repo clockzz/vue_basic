@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "volar-service-prettier": "^0.0.17",
+    "volar-service-vetur": "^0.0.17"
+  }
+}

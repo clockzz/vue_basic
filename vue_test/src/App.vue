@@ -1,0 +1,27 @@
+<template>
+  <div>
+    <!-- 组件的name属性是组件的标识，相当于组件的ID -->
+    <Student/>
+    <hr>
+    <School></School>
+ 
+    
+    
+   
+  </div>
+</template>
+ 
+<script>
+  import Student from './components/Student';
+  import School from './components/School';
+
+
+  export default {
+    name:'App',
+     components:{Student,School},
+  }
+</script>
+
+<style>
+
+</style>
