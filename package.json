@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "less-loader": "^11.1.3",
+    "nanoid": "^5.0.4"
+  }
+}
